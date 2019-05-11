@@ -41,5 +41,8 @@
     <ClInclude Include="main\ApiAlgorithm.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="main\Algorithm\QuickSort.h">
+      <Filter>算法</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

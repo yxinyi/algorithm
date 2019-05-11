@@ -7,10 +7,19 @@
 #include "Algorithm/SelectSort.h"
 #include "Algorithm/InsertSort.h"
 #include "Algorithm/MergeSort.h"
+#include "Algorithm/QuickSort.h"
+
+#define OPEN 1
+#define CLOSE 0
+
+#define printContorl OPEN
 
 //数组输出函数
 template<class TBase>
 void funcPrintVec(std::vector<TBase >& _vec) {
+    if(printContorl == 0){
+        return;
+    }
     std::for_each(std::begin(_vec), std::end(_vec), [](const TBase i) {
         std::cout << i << std::ends;
     });
@@ -31,7 +40,7 @@ void randomVecIdx(std::vector<TBase >& _vec){
 
 //生成数组
 template<class TBase>
-std::vector<TBase > buildVec(int size, TBase ceil, TBase floor) {
+std::vector<TBase > buildVec(int size, TBase floor, TBase ceil) {
     srand((unsigned int)time(0));
     int _the_range = (ceil - floor);
     std::vector<TBase > _tmp_vec;
@@ -53,4 +62,8 @@ void shellSort(std::vector<int>& vec);
 void mergeSort(std::vector<int>& vec);
 //归并排序自下而上
 void mergeSortDownUp(std::vector<int>& vec);
+//快速排序
+template<class TBase>
+void quickSort(std::vector<TBase>& vec);
+
 

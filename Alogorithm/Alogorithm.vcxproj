@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClInclude Include="main\Algorithm\InsertSort.h" />
     <ClInclude Include="main\Algorithm\MergeSort.h" />
+    <ClInclude Include="main\Algorithm\QuickSort.h" />
     <ClInclude Include="main\Algorithm\SelectSort.h" />
     <ClInclude Include="main\Algorithm\ShellSort.h" />
     <ClInclude Include="main\ApiAlgorithm.h" />

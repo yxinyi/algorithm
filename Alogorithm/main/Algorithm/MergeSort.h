@@ -11,16 +11,16 @@
     ΪNlg(N)
 */
 
+static int g_count = 1;
 template<class TBase>
 void merge(std::vector<TBase>& vec, int left, int mid,int right){
     //std::cout << "merge( left:" << left << " mid: " << mid <<" right:" << right << ")"<<std::endl;
     int _len = right - left;
-    static int _count = 1;
-    std::cout << "len: " <<_len << " is: " << _count << "time"<<std::endl;
-    _count++;
+    //std::cout << "len: " <<_len+1 << " is: " << _count << "time"<<std::endl;
     std::vector<TBase> _rst_vec = vec;
 
     for(int _idx = left,_l = left, _r = mid+1; _idx <= right; _idx++){
+        g_count++;
         if(_l > mid){
             _rst_vec[_idx] = vec[_r++];
         }else if(_r > right){
@@ -52,10 +52,13 @@ void recursion(std::vector<TBase>& vec, int _l, int _r){
 
 template<class TBase>
 void mergeSort(std::vector<TBase>& vec){
+    g_count = 1;
     recursion(vec,0,vec.size()-1);
+    std::cout << g_count << std::ends;
 }
 template<class TBase>
 void mergeSortDownUp(std::vector<TBase>& vec) {
+    g_count = 1;
     int _len = vec.size();
     for (int _sz = 1 ; _sz  <= _len; _sz += _sz){
         for(int _sort_idx = 0; _sort_idx < _len -_sz; _sort_idx += _sz+ _sz){
@@ -63,4 +66,5 @@ void mergeSortDownUp(std::vector<TBase>& vec) {
             funcPrintVec(vec);
         }
     }
+    std::cout << g_count << std::ends;
 }
