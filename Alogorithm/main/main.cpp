@@ -3,10 +3,11 @@
 #include "chapterTest/testCodeChapter_2.h"
 
 void tmpTest(){
-    std::vector<int > _vec = buildVec(5, 0, 100);
+    //std::vector<int> _vec = buildVec(10, 0, 60);
+    std::vector<int> _vec = {1,2,3,4,5,6,7,8,9};
     randomVecIdx(_vec);
-    funcPrintVec(_vec);
-    quickSort(_vec);
+    _vec.insert(_vec.begin(),0);
+    heapSort(_vec);
     funcPrintVec(_vec);
 }
 
