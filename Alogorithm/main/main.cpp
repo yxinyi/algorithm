@@ -1,14 +1,31 @@
 #include <iostream>
+#include <map>
 #include "ApiAlgorithm.h"
 #include "chapterTest/testCodeChapter_2.h"
 
 void tmpTest(){
-    //std::vector<int> _vec = buildVec(10, 0, 60);
-    std::vector<int> _vec = {1,2,3,4,5,6,7,8,9};
-    randomVecIdx(_vec);
-    _vec.insert(_vec.begin(),0);
-    heapSort(_vec);
-    funcPrintVec(_vec);
+    BinarySortTree<int,int> _bst;
+    _bst.put(10, 50);
+    _bst.put(5, 50);
+    _bst.put(123, 50);
+    _bst.put(2, 50);
+    _bst.put(23, 50);
+    _bst.put(4, 50);
+    _bst.put(11, 51);
+    std::cout << _bst.max() << std::endl;
+    _bst.deleteMax();
+    std::cout << _bst.max() << std::endl;
+    _bst.deleteMax();
+    std::cout << _bst.max() << std::endl;
+    _bst.deleteMax();
+    std::cout << _bst.max() << std::endl;
+    _bst.deleteMax();
+    std::cout << _bst.max() << std::endl;
+    _bst.deleteMax();
+    std::cout << _bst.max() << std::endl;
+    _bst.deleteMax();
+    std::cout << _bst.max() << std::endl;
+    _bst.deleteMax();
 }
 
 int main(){

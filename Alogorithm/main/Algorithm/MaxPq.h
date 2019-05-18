@@ -123,7 +123,7 @@ void heapSort(std::vector<TBase>& vec){
         sink(vec, i, _len);
     }
     funcPrintVec(vec);
-    while (_len > 1)
+    while (_len >= 1)
     {
         std::swap(vec[1], vec[_len--]);
         sink(vec, 1, _len);

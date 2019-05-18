@@ -9,6 +9,7 @@
 #include "Algorithm/MergeSort.h"
 #include "Algorithm/QuickSort.h"
 #include "Algorithm/MaxPq.h"
+#include "Algorithm/ST.h"
 
 #define OPEN 1
 #define CLOSE 0

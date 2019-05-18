@@ -47,5 +47,8 @@
     <ClInclude Include="main\Algorithm\MaxPq.h">
       <Filter>算法</Filter>
     </ClInclude>
+    <ClInclude Include="main\Algorithm\ST.h">
+      <Filter>算法</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -124,6 +124,7 @@
     <ClInclude Include="main\Algorithm\QuickSort.h" />
     <ClInclude Include="main\Algorithm\SelectSort.h" />
     <ClInclude Include="main\Algorithm\ShellSort.h" />
+    <ClInclude Include="main\Algorithm\ST.h" />
     <ClInclude Include="main\ApiAlgorithm.h" />
     <ClInclude Include="main\chapterTest\testCodeChapter_2.h" />
   </ItemGroup>
