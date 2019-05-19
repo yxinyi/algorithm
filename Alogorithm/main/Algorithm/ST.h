@@ -35,6 +35,17 @@ public:
 };
 
 template<class KEY, class VAL>
+class RBNode{
+public:
+    RBNode(KEY k, VAL v, bool b = false) :m_key(k), m_val(v), m_left(nullptr), m_right(nullptr), isRed(b) {}
+    KEY   m_key;
+    VAL   m_val;
+    RBNode* m_left, *m_right;
+    int   N;
+    bool isRed;
+};
+
+template<class KEY, class VAL>
 class BinarySortTree : public BaseSymbolTable<KEY,VAL> {
 public:
     BinarySortTree() {}
@@ -193,11 +204,92 @@ private:
         delete n;
         return _tmp_lp;
     }
-
-
-
-    //deleteMax
-
 private:
     Node<KEY, VAL>* root;
+};
+
+/*
+    红黑树可以看成一颗2-3树
+    主要定义:
+        1:红链接均为左链接
+        2:没有任何一个节点同时和两条红链接先练;
+        3:该树是完美黑色平衡的,即任意空间街到根节点的路径和是哪个的黑链接数量相同
+
+*/
+template<class KEY, class VAL>
+class RedBlackTree : public BaseSymbolTable<KEY, VAL> {
+public:
+    RedBlackTree():isRed(false){}
+    RBNode<KEY, VAL>* rotateLeft(RBNode<KEY, VAL>* n){
+        RBNode<KEY, VAL>* _tmp = n->m_right;
+        n->m_right = _tmp->m_left;
+        _tmp->m_left = n;
+        _tmp->isRed = n->isRed;
+        n->isRed = true;
+        return _tmp;
+    }
+    RBNode<KEY, VAL>* rotateRight(RBNode<KEY, VAL>* n) {
+        RBNode<KEY, VAL>* _tmp = n->m_left;
+        n->m_left = _tmp->m_right;
+        _tmp->m_right = n;
+        _tmp->isRed = n->isRed;
+        n->isRed = true;
+        return _tmp;
+    }
+
+    void filpColors(RBNode<KEY, VAL>* n){
+        n->m_left->isRed = false;
+        n->m_right->isRed = false;
+        n->isRed = true;
+    }
+
+    void put(KEY k, VAL v){
+        root = put(root, k, v);
+        root->isRed = false;
+    }
+    VAL min() {
+        if(RBNode<KEY, VAL>* _tmp_p = min(root)){
+            return _tmp_p->m_key;
+        }
+        return VAL();
+    }
+
+private:
+    RBNode<KEY, VAL>* put(RBNode<KEY, VAL>* n,KEY k ,VAL v){
+        if(!n){
+            return new RBNode<KEY,VAL>(k,v,true);
+        }
+        if(k < n->m_key){
+            n->m_left = put(n->m_left, k, v);
+        }else if(k > n->m_key){
+            n->m_right = put(n->m_right, k, v);
+        }else{
+            n->m_val = v;
+        }
+        //当右链接是红链接,左链接不是红链接,需要进行左旋操作
+        if((n->m_right&&n->m_right->isRed) && (n->m_left &&!n->m_left->isRed)){
+            rotateLeft(n);
+        }
+        //当左链接是红链接,左结点的左链接是红链接,需要进行右旋
+        if((n->m_left&&n->m_left->isRed) && (n->m_left->m_left&&n->m_left->m_left->isRed)){
+            rotateRight(n);
+        }
+        //当左右链接都是红链接时需要进行通化处理
+        if((n->m_left&&n->m_left->isRed)&& (n->m_right&&n->m_right->isRed)){
+            filpColors(n);
+        }
+        return n;
+    }
+
+
+    RBNode<KEY, VAL>* min(RBNode<KEY, VAL>* n) {
+        if(n->m_left){
+            return min(n->m_left);
+        }
+        return n;
+    }
+
+private:
+    RBNode<KEY, VAL>* root;
+    bool isRed;
 };
